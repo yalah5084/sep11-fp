@@ -1,0 +1,23 @@
+{
+  "name": "sep11-fp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "style.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yalah5084/sep11-fp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yalah5084/sep11-fp/issues"
+  },
+  "homepage": "https://github.com/yalah5084/sep11-fp#readme",
+  "dependencies": {
+    "firebase": "^9.18.0"
+  }
+}

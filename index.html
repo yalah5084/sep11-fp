@@ -14,6 +14,7 @@
         <title>Information Page</title>
     </head>
     <body>
+
         <!-- HTML --> <!--Make a logo?-->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -41,34 +42,53 @@
           <!-- main -->
           <div style="padding: 10px 30px;" >
             <h1 id="petname"></h1>
+
             <!-- Enter pet name on page -->
-            <input type="text" id="name"><br>
+            <input placeholder="pet name" type="text" id="name"><br>
 
             <p>Type in coordinates of your pet:</p>
-            <input type="text" id="coord">
+
+            <!-- North&West=+ South&East=- -->
+            <p>(Please indicate if South put a "-"):</p>
+            <input placeholder="longitude" type="text" id="coordlong">
+            <p>(Please indicate if East put a "-"):</p>
+            <input placeholder="latitude" type="text" id="coordlat">
             <button id="button">Enter</button>
 
-            <p id="location"></p>
+            <p id="locationlong"></p>
+            <p id="locationlat"></p>
           </div>
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <!-- <script type ="module" src="src/index.js"><$> -->
         <script>
             // JS
-            // Set pet name
 
+            // Set pet name
             document.getElementById('name').addEventListener("keyup",function(event){
                 document.getElementById('petname').innerHTML = event.target.value;
             });
-            document.getElementById('coord').addEventListener("click",function(event){
-                document.getElementById('coord').addEventListener("change",function(event){
-                    document.getElementById('location').innerHTML = event.target.value;
+
+            //Set locations
+            document.getElementById('button').addEventListener("click",function(event){
+                document.getElementById('coordlong').addEventListener("change",function(event){
+                    document.getElementById('locationlong').innerHTML = event.target.value;
+                });
+            });
+            document.getElementById('button').addEventListener("click",function(event){
+                document.getElementById('coordlat').addEventListener("change",function(event){
+                    document.getElementById('locationlat').innerHTML = event.target.value;
                 });
             });
 
-
+            // let obj = {
+            //   longitude:
+            // }
+            // firebase.database().ref('locations/longitude')
 
         </script>
+
     </body>
 </html>
