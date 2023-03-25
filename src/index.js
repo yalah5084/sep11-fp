@@ -1,22 +1,22 @@
-import { intializeApp } from 'firebase/app';
-import { getDatabase } from "firebase/database";
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyCiwTe05z2M9VfbIFGJ8eAgXbuc4y77zP8",
-    authDomain: "fp-pet-finder.firebaseapp.com",
-    databaseURL: "https://fp-pet-finder-default-rtdb.firebaseio.com",
-    projectId: "fp-pet-finder",
-    storageBucket: "fp-pet-finder.appspot.com",
-    messagingSenderId: "35132024507",
-    appId: "1:35132024507:web:11a985555dd7e2c6f76b9e",
-    measurementId: "G-YGWQHTCER7"
+  apiKey: "AIzaSyAZLb_WBUpdheypw4RsCnQ-hyqx30j1Xfc",
+  authDomain: "petfinder-fp.firebaseapp.com",
+  databaseURL: "https://petfinder-fp-default-rtdb.firebaseio.com",
+  projectId: "petfinder-fp",
+  storageBucket: "petfinder-fp.appspot.com",
+  messagingSenderId: "17525799636",
+  appId: "1:17525799636:web:34696046c6dd3ed32a9941",
+  measurementId: "G-6D39BMTZNV"
+};
 
-  };
-
- // Initialize Firebase
- const app = initializeApp(firebaseConfig);
-
-
- // Initialize Realtime Database and get a reference to the service
- const database = getDatabase(app);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
