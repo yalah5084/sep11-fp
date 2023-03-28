@@ -20,3 +20,19 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+import { getDatabase, ref, set } from "firebase/database";
+
+// objects
+let obj = {
+  longitude:
+  latitude:
+}
+
+function writeUserData(location, longitude, latitude) {
+  const db = getDatabase();
+  set(ref(db, 'location/' + location), {
+    longitude: longitude,
+    latitude: latitude,
+  });
+}
