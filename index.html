@@ -6,9 +6,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- Leaflet CSS file -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+
+        <!-- Leaflet JavaScript file -->
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
         <style>
             /* CSS */
 
+            #map {
+              margin: auto;
+              width: 1300px;
+              height: 600px;
+            }
         </style>
 
         <title>Information Page</title>
@@ -39,25 +51,42 @@
             </div>
           </nav>
 
+
+
           <!-- main -->
           <div style="padding: 10px 30px;" >
-            <h1 id="petname"></h1>
+            <h1 id="pName"></h1>
 
             <!-- Enter pet name on page -->
-            <input placeholder="pet name" type="text" id="name"><br>
+            <input placeholder="pet name" type="text" id="petName">
+            <br>
+            <br>
 
             <p>Type in coordinates of your pet:</p>
 
-            <!-- North&West=+ South&East=- -->
+
+            <!-- Longitude -->
             <p>(Please indicate if South put a "-"):</p>
-            <input placeholder="longitude" type="text" id="coordlong">
+            <input placeholder="longitude" type="text" id="coordLong">
+            <br>
+            <br>
+
+            <!-- Latitude -->
             <p>(Please indicate if East put a "-"):</p>
-            <input placeholder="latitude" type="text" id="coordlat">
+            <input placeholder="latitude" type="text" id="coordLat">
+
             <button id="button">Enter</button>
+
+            <br>
+            <br>
 
             <p id="locationlong"></p>
             <p id="locationlat"></p>
           </div>
+
+          <!-- map -->
+          <div id="map"></div>
+
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -66,27 +95,67 @@
         <script>
             // JS
 
+
+            var button = document.getElementById('button')
+            var userLong = document.getElementById('coordLong')
+            var userLat = document.getElementById('coordLat')
+            var pLong = document.getElementById('locationlong')
+            var pLat = document.getElementById('locationlat')
+            var pName = document.getElementById('pName')
+            var petName = document.getElementById('petName')
+
+
+
             // Set pet name
-            document.getElementById('name').addEventListener("keyup",function(event){
-                document.getElementById('petname').innerHTML = event.target.value;
+            petName.addEventListener("keyup", function(event) {
+              pName.innerHTML = event.target.value;
             });
 
-            //Set locations
-            document.getElementById('button').addEventListener("click",function(event){
-                document.getElementById('coordlong').addEventListener("change",function(event){
-                    document.getElementById('locationlong').innerHTML = event.target.value;
-                });
-            });
-            document.getElementById('button').addEventListener("click",function(event){
-                document.getElementById('coordlat').addEventListener("change",function(event){
-                    document.getElementById('locationlat').innerHTML = event.target.value;
-                });
-            });
+
+
+            // collect coordinates once button is clicked
+            button.addEventListener("click", function() {
+              console.log(userLong.value)
+              console.log(userLat.value)
+
+              pLong.innerHTML = "Longitude: " + userLong.value
+              pLat.innerHTML = "Latitude: " + userLat.value
+
+              petMarker(userLong.value, userLat.value) // use the coordinates to add a marker to the map
+            })
+
+
 
             // let obj = {
             //   longitude:
             // }
             // firebase.database().ref('locations/longitude')
+
+
+
+
+            // Map
+            var map = L.map('map').setView([40.63,-73.98], 2);
+
+            // map layer
+            L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=5IU2Ey7QYWG2kvuuhBzs', {
+
+                // min zoom
+                // minZoom: 2,
+
+                // attribution
+                attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+
+            }).addTo(map)
+
+
+
+            // marker
+            function petMarker(long, lat) {
+              L.marker([long, lat]).addTo(map)
+            }
+
+
 
         </script>
 
