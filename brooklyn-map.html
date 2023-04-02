@@ -19,10 +19,10 @@
 
             #bk-map {
                 position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
+                top: 100px;
+                bottom: 100px;
+                left: 100px;
+                right: 100px;
             }
 
         </style>
@@ -37,18 +37,26 @@
         <script>
             // JS
 
-            var bkMap = L.map('bk-map').setView([40.63,-73.98], 14);
+            // var coordinates = prompt("What are the coordinates?")
+
+
+            var bkMap = L.map('bk-map').setView([40.63,-73.98], 2);
 
             // map layer
             L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=5IU2Ey7QYWG2kvuuhBzs', {
 
                 // min zoom
-                minZoom: 12,
+                // minZoom: 12,
 
                 // attribution
                 attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
 
             }).addTo(bkMap)
+
+            var marker = L.marker([61.576754336064965, -108.77339940051274])
+            // var marker = L.marker([coordinates, -108.77339940051274])
+
+            marker.addTo(bkMap)
         </script>
 
     </body>
