@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/yalah5084/sep11-fp#readme",
   "dependencies": {
-    "firebase": "^9.18.0"
+    "@firebase/app": "^0.9.7",
+    "@firebase/firestore": "^3.10.0",
+    "firebase": "^9.19.1"
   }
 }
