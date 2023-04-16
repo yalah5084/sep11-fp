@@ -157,11 +157,10 @@
             function petMarker(long, lat) {
               var marker = L.marker([long, lat]).addTo(map) // add marker to the map
               marker.bindPopup(petName.value, {closeOnClick: false, autoClose: false}).openPopup() // add pet name to the marker and make sure it's open
+
+              marker.on('dblclick', () => map.removeLayer(marker))
             }
 
-
-            // var test = L.marker([0, 0]).addTo(map)
-            // test.bindPopup("I'm a polygon", {closeOnClick: false, autoClose: false}).openPopup()
 
 
 
