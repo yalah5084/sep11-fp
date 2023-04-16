@@ -37,8 +37,12 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
+                    <a class="nav-link" href="home.html">Account</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Information</a>
                   </li>
+
                   <li class="nav-item">
                     <a class="nav-link" href="brooklyn-map.html">Map</a>
                   </li>
@@ -66,13 +70,13 @@
 
 
             <!-- Longitude -->
-            <p>(Please indicate if South put a "-"):</p>
+            <p>(If South, please put a negative sign "-"):</p>
             <input placeholder="longitude" type="text" id="coordLong">
             <br>
             <br>
 
             <!-- Latitude -->
-            <p>(Please indicate if East put a "-"):</p>
+            <p>(If East, please put a negative sign "-"):</p>
             <input placeholder="latitude" type="text" id="coordLat">
 
             <button id="button">Enter</button>
@@ -87,8 +91,13 @@
           <!-- map -->
           <div id="map"></div>
 
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js">
+          <script type ="module" src="style.js"></script>
+          </script>
 
-        <!-- <script type ="module" src="style.js"><script> -->
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -110,6 +119,7 @@
             petName.addEventListener("keyup", function(event) {
               pName.innerHTML = event.target.value;
             });
+
 
 
 
@@ -143,12 +153,19 @@
 
 
 
-            // marker
+            // make markers
             function petMarker(long, lat) {
-              L.marker([long, lat]).addTo(map)
+              var marker = L.marker([long, lat]).addTo(map) // add marker to the map
+              marker.bindPopup(petName.value, {closeOnClick: false, autoClose: false}).openPopup() // add pet name to the marker and make sure it's open
             }
 
+
+            // var test = L.marker([0, 0]).addTo(map)
+            // test.bindPopup("I'm a polygon", {closeOnClick: false, autoClose: false}).openPopup()
+
+
+
         </script>
-        <script type ="module" src="style.js"><script>
+        <!-- <script type ="module" src="style.js"></script> -->
     </body>
 </html>
