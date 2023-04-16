@@ -27,6 +27,14 @@ const analytics = getAnalytics(app);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 const db = getFirestore(app);
+const colRef = collection(db,'locations')
+getDocs(colRef)
+    .then((snapshot)=>{
+        console.log(snapshot.docs)
+    })
+    .catch(err=>{
+        console.log(err.message)
+    })
 // const db.collection('todos').getDocs();
 // const todosCol = collection(db, 'todos');
 // const snapshot = await getDocs(todosCol);
