@@ -110,8 +110,14 @@
         // console.log(email, password)
 
         auth.createUserWithEmailAndPassword(email, password)
-        .then((res) => {
-            console.log(res.user)
+        .then((cred) => {
+            // console.log(res.user)
+            return collection(db,'users').doc(cred.user.uid).set({
+                collection(db,'users','locations').set({
+                    Longitude: 0
+                    Latitude: 0
+                })
+            })
         })
         .catch((err) => {
             console.log(err.code)
