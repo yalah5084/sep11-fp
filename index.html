@@ -117,7 +117,8 @@
 
             // Set pet name
             petName.addEventListener("keyup", function(event) {
-              pName.innerHTML = event.target.value;
+              var name = event.target.value
+              pName.innerHTML = name;
             });
 
 
@@ -127,9 +128,13 @@
             button.addEventListener("click", function() {
               console.log(userLong.value)
               console.log(userLat.value)
+              var userLong-trans = userLong.value
+              var userLat-trans = userLat.value
+              localStorage.setItem('long-trans', userLong-trans)
+              localStorage.setItem('lat-trans', userLat-trans)
 
-              pLong.innerHTML = "Longitude: " + userLong.value
-              pLat.innerHTML = "Latitude: " + userLat.value
+              pLong.innerHTML = "Longitude: " + userLong-trans
+              pLat.innerHTML = "Latitude: " + userLat-trans
 
               petMarker(userLong.value, userLat.value) // use the coordinates to add a marker to the map
             })
@@ -160,7 +165,6 @@
 
               marker.on('dblclick', function() {map.removeLayer(marker)})
             }
-
 
 
 
