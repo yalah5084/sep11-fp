@@ -158,7 +158,7 @@
               var marker = L.marker([long, lat], {draggable: true}).addTo(map) // add marker to the map
               marker.bindPopup(petName.value, {closeOnClick: false, autoClose: false}).openPopup() // add pet name to the marker and make sure it's open
 
-              marker.on('dblclick', function() {map.removeLayer(marker)})
+              marker.on('dblclick', function() {map.removeLayer(marker)}) // double click to remove marker
             }
 
 
