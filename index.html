@@ -128,13 +128,13 @@
             button.addEventListener("click", function() {
               console.log(userLong.value)
               console.log(userLat.value)
-              var userLong-trans = userLong.value
-              var userLat-trans = userLat.value
-              localStorage.setItem('long-trans', userLong-trans)
-              localStorage.setItem('lat-trans', userLat-trans)
+              var userLongTrans = userLong.value
+              var userLatTrans = userLat.value
+              localStorage.setItem('long-trans', userLongTrans)
+              localStorage.setItem('lat-trans', userLatTrans)
 
-              pLong.innerHTML = "Longitude: " + userLong-trans
-              pLat.innerHTML = "Latitude: " + userLat-trans
+              pLong.innerHTML = "Longitude: " + userLongTrans
+              pLat.innerHTML = "Latitude: " + userLatTrans
 
               petMarker(userLong.value, userLat.value) // use the coordinates to add a marker to the map
             })
