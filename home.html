@@ -83,11 +83,8 @@
 
     </body>
     <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js">  </script>
-        <script>
+    <script type="module">
+        import { getFirestore } from "firebase/firestore"
 
         const firebaseApp = firebase.initializeApp({
         apiKey: "AIzaSyAZLb_WBUpdheypw4RsCnQ-hyqx30j1Xfc",
@@ -99,6 +96,12 @@
         appId: "1:17525799636:web:34696046c6dd3ed32a9941",
         measurementId: "G-6D39BMTZNV"
         });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js">  </script>
+        <script>
 
         const db = firebaseApp.firestore();
         const auth = firebaseApp.auth();
@@ -114,11 +117,10 @@
         .then((cred) => {
             // console.log(res.user)
             return collection(db,'users').doc(cred.user.uid).set({
-                Longitude: long
+                Longitude: long,
                 Latitude: lat
                 })
             })
-        })
         .catch((err) => {
             console.log(err.code)
             console.log(err.message)
@@ -129,4 +131,3 @@
 
 
 </html>
-git 
