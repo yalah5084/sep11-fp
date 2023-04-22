@@ -22,7 +22,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
         <!-- <link href="style.css" rel="stylesheet" type="text/css"> -->
 
-        <title>Title</title>
+        <title>Home</title>
     </head>
     <body>
     <!-- HTML -->
@@ -62,7 +62,7 @@
                     placeholder="Email"
                     id="email"
                     type="email"
-                />
+                >
             </div>
             <div>
                 <label>Password:</label>
@@ -71,20 +71,24 @@
                 placeholder="Password"
                 id="password"
                 type="password"
-                />
+                >
             </div>
             <button
             class="submit-btn"
             onclick="signup"
             >Submit</button>
+            <!-- <input class="submit-btn" type = "button" onclick = "signup()" value = "Submit"> -->
         </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js">  </script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
 
-    </body>
-    <!-- JS -->
+        <!-- JS -->
     <script type="module">
-        import { getFirestore } from "firebase/firestore"
 
         const firebaseApp = firebase.initializeApp({
         apiKey: "AIzaSyAZLb_WBUpdheypw4RsCnQ-hyqx30j1Xfc",
@@ -96,28 +100,29 @@
         appId: "1:17525799636:web:34696046c6dd3ed32a9941",
         measurementId: "G-6D39BMTZNV"
         });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js">  </script>
-        <script>
+        // import { initializeApp } from "/node-modulesfirebase/app";
+        // firebase.initializeApp(firebaseApp);
+        // import { getAuth, createUserWithEmailAndPassword } from "/node-modules/firebase/auth";
+
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js'
+
+        // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js'
+
+        // Add Firebase products that you want to use
+        import { getAuth, createUserWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
 
         const db = firebaseApp.firestore();
         const auth = firebaseApp.auth();
         const myData = localStorage.getItem('name-trans')
 
-
         //Connect with google
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
-        // Setting up language perference
-        auth.languageCode = 'it';
-        // To apply the default browser preference instead of explicitly setting it.
-        firebase.auth().useDeviceLanguage();
 
-        var signup = () => {
+        function signup(){
             const email = document.getElementById('email').value
             const password = document.getElementById('password').value
             const long = localStorage.getItem('long-trans')
@@ -228,8 +233,9 @@
 
 
     </script>
+    </body>
+
 <!--  -->
-<script type ="module" src="style.js"></script>
-<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+
 
 </html>

@@ -11,8 +11,8 @@
     "url": "git+https://github.com/yalah5084/sep11-fp.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "hanna, yala, david",
+    "license": "ISC",
   "bugs": {
     "url": "https://github.com/yalah5084/sep11-fp/issues"
   },
@@ -20,6 +20,6 @@
   "dependencies": {
     "@firebase/app": "^0.9.7",
     "@firebase/firestore": "^3.10.0",
-    "firebase": "^9.19.1"
+    "firebase": "^9.20.0"
   }
 }
