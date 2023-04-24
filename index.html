@@ -128,18 +128,13 @@
             button.addEventListener("click", function() {
               console.log(userLong.value)
               console.log(userLat.value)
-<<<<<<< HEAD
+
               var userLongTrans = userLong.value
               var userLatTrans = userLat.value
               localStorage.setItem('long-trans', userLongTrans)
               localStorage.setItem('lat-trans', userLatTrans)
-=======
-              var userLongtrans = userLong.value
-              var userLattrans = userLat.value
-              localStorage.setItem('long-trans', userLong-trans)
-              localStorage.setItem('lat-trans', userLat-trans)
->>>>>>> fe750b1965d5bfecd9366a0947513ada7860da5b
 
+             
               pLong.innerHTML = "Longitude: " + userLongTrans
               pLat.innerHTML = "Latitude: " + userLatTrans
 
