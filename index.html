@@ -66,6 +66,11 @@
             <br>
             <br>
 
+            <input placeholder="pet description" type="text" id="description">
+
+            <br>
+            <br>
+
             <p>Type in coordinates of your pet:</p>
 
 
@@ -112,6 +117,7 @@
             var pLat = document.getElementById('locationlat')
             var pName = document.getElementById('pName')
             var petName = document.getElementById('petName')
+            var description = document.getElementById('description')
 
 
 
@@ -157,11 +163,29 @@
             }).addTo(map)
 
 
+            // icon
+
 
             // make markers
             function petMarker(long, lat) {
               var marker = L.marker([long, lat], {draggable: true}).addTo(map) // add marker to the map
-              marker.bindPopup(petName.value, {closeOnClick: false, autoClose: false}).openPopup() // add pet name to the marker and make sure it's open
+              marker.bindPopup(petName.value + "<br>" + description.value, {closeOnClick: false, autoClose: false}).openPopup() // add pet name to the marker and make sure it's open
+
+
+              // make marker bounce when clicked
+              marker.on("click", function() {
+                var pos = map.latLngToLayerPoint(marker.getLatLng());
+                pos.y -= 20;
+                var y = new L.PosAnimation();
+
+                y.once('end',function() {
+                    pos.y += 20;
+                    y.run(marker._icon, pos, 0.5); // go down time
+                });
+
+                y.run(marker._icon, pos, 0.5); // go up time
+              });
+
 
               marker.on('dblclick', function() {map.removeLayer(marker)}) // double click to remove marker
             }
