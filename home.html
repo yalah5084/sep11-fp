@@ -111,11 +111,10 @@
 
         // Add Firebase products that you want to use
         import { getAuth, createUserWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js'
-        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
+        import { getFirestore, collection } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
 
         const db = firebaseApp.firestore();
         const auth = firebaseApp.auth();
-        const myData = localStorage.getItem('name-trans')
 
         //Connect with google
         const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -142,8 +141,8 @@
             .then((cred) => {
                 console.log(res.user)
                 return collection(db,'users').doc(cred.user.uid).set({
-                    // Longitude: long
-                    // Latitude: lat
+                    Longitude: long,
+                    Latitude: lat
                     })
                 })
             .catch((err) => {
@@ -238,8 +237,6 @@
 <!--  -->
 
 
-<<<<<<< HEAD
+
 </html>
-=======
-</html>
->>>>>>> fe750b1965d5bfecd9366a0947513ada7860da5b
+
