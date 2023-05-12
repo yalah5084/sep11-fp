@@ -139,13 +139,14 @@
               localStorage.setItem('long-trans', userLongTrans)
               localStorage.setItem('lat-trans', userLatTrans)
 
+
               pLong.innerHTML = "Longitude: " + userLongTrans
               pLat.innerHTML = "Latitude: " + userLatTrans
 
               petMarker(userLong.value, userLat.value) // use the coordinates to add a marker to the map
             })
 
-
+            //limit the map, make the user unable to move the pin, search cookies
 
 
             // Map
