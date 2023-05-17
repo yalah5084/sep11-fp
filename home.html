@@ -40,10 +40,6 @@
                 <li class="nav-item">
                 <a class="nav-link" href="index.html">Information</a>
                 </li>
-
-                <li class="nav-item">
-                <a class="nav-link" href="brooklyn-map.html">Map</a>
-                </li>
             </ul>
             <!-- <form class="d-flex" role="search"> //Optional
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -196,6 +192,7 @@
             .catch((err) => {
                 console.log(err.code)
                 console.log(err.message)
+                alert(err.code)
                 // alert("Please write a valid email/valid password");//make this into a popup
                 // The email of the user's account used.
                 // The AuthCredential type that was used.
@@ -228,6 +225,7 @@
 
             firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
                 console.log(error)
+                alert("Please write a valid email/valid password");//make this into a popup
             })
         }
 
@@ -240,13 +238,13 @@
         }
 
         function showUserData(user){
-            document.getElementById('userDetails').innerHTML =
-            "Logged in Sucess with user.email"
+            document.getElementById('userDetails').innerHTML = "Logged in Successful"
         }
 
         firebase.auth().onAuthStateChanged(function(user){
                 if(user){
                     console.log(user)
+                    showUserData();
                     document.querySelector('#loginScreen').style.display = "none"
                     document.querySelector('#dashboard').style.display = "block"
                 }else{
