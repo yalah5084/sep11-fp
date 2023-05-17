@@ -103,6 +103,12 @@
              <button id="login-btn">Login</button>
          </div>
 
+         <input
+         name="test"
+         placeholder="test"
+         id="text"
+         type="text">
+         <button id="enter-btn">enter</button>
          <div id="dashboard">
             <div id="userDetails"></div>
             <button class="logout-btn" id="logout-btn">Logout</button>
@@ -126,14 +132,14 @@
     <script type="module">
 
         const firebaseApp = firebase.initializeApp({
-        apiKey: "AIzaSyAZLb_WBUpdheypw4RsCnQ-hyqx30j1Xfc",
-        authDomain: "petfinder-fp.firebaseapp.com",
-        databaseURL: "https://petfinder-fp-default-rtdb.firebaseio.com",
-        projectId: "petfinder-fp",
-        storageBucket: "petfinder-fp.appspot.com",
-        messagingSenderId: "17525799636",
-        appId: "1:17525799636:web:34696046c6dd3ed32a9941",
-        measurementId: "G-6D39BMTZNV"
+            apiKey: "AIzaSyAZLb_WBUpdheypw4RsCnQ-hyqx30j1Xfc",
+            authDomain: "petfinder-fp.firebaseapp.com",
+            databaseURL: "https://petfinder-fp-default-rtdb.firebaseio.com",
+            projectId: "petfinder-fp",
+            storageBucket: "petfinder-fp.appspot.com",
+            messagingSenderId: "17525799636",
+            appId: "1:17525799636:web:34696046c6dd3ed32a9941",
+            measurementId: "G-6D39BMTZNV"
         });
         // import { initializeApp } from "/node-modulesfirebase/app";
         // firebase.initializeApp(firebaseApp);
@@ -146,9 +152,10 @@
 
         // Add Firebase products that you want to use
         import { getAuth, createUserWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js'
-        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
+        import { getFirestore, addDoc, collection } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
 
-        const db = firebaseApp.firestore();
+        const db = getFirestore();
+        const colRef = collection(db,"testing")
         const auth = firebaseApp.auth();
         const myData = localStorage.getItem('name-trans')
 
@@ -168,7 +175,7 @@
             const password = document.getElementById('password').value
             const long = localStorage.getItem('long-trans')
             const lat = localStorage.getItem('lat-trans')
-            console.log(email, password)
+            // console.log(email, password)
 
             auth.createUserWithEmailAndPassword(email, password)//new accounts
             .then((result) => {
@@ -181,28 +188,36 @@
                 // ...
             })
             //firestore here
+            //david
             .then((cred) => {
                 console.log(res.user)
-                return collection(db,'users').doc(cred.user.uid).set({
-                    Longitude: long,
-                    Latitude: lat
-                    })
+                // addDoc(collection(db,'users').doc(cred.user.uid))
                 })
             .catch((err) => {
                 console.log(err.code)
                 console.log(err.message)
-                alert("Please write a valid email/valid password");//make this into a popup
+                // alert("Please write a valid email/valid password");//make this into a popup
                 // The email of the user's account used.
                 // The AuthCredential type that was used.
             })
+
         }
 
-
+        document.querySelector('#enter-btn').addEventListener('click', entered);
         document.querySelector('#login-btn').addEventListener('click',loginUser);
         document.querySelector('#logout-btn').addEventListener('click', logoutUser);
 
         document.querySelector('#loginScreen').style.display = "block"
         document.querySelector('#dashboard').style.display = "none"
+
+
+
+        function entered(){
+            const enter = document.getElementById('text').value
+            addDoc(colRef,{
+                pet: enter
+            })
+        }
 
         function loginUser(){
             const email = document.getElementById('emailB').value
@@ -279,9 +294,5 @@
     </body>
 
 
-
-
-
-<<<<<<< HEAD
 </html>
 
