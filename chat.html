@@ -65,7 +65,7 @@
     <br>
     <div class="flex h-screen">
         <div class="m-auto">
-            <input type="text" id="stuffs" placeholder="Type whatever here!"><br><button id="submit">Submit</button>
+            <input type="text" id="chat" placeholder="Type here!"><br><button id="submit">Submit</button>
             <ul id="quotes">
             </ul>
         </div>
@@ -82,29 +82,28 @@
         <script>
 
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyAZLb_WBUpdheypw4RsCnQ-hyqx30j1Xfc",
-          authDomain: "petfinder-fp.firebaseapp.com",
-          databaseURL: "https://petfinder-fp-default-rtdb.firebaseio.com",
-          projectId: "petfinder-fp",
-          storageBucket: "petfinder-fp.appspot.com",
-          messagingSenderId: "17525799636",
-          appId: "1:17525799636:web:34696046c6dd3ed32a9941",
-          measurementId: "G-6D39BMTZNV"
-        };
+        const firebaseApp = firebase.initializeApp({
+        apiKey: "AIzaSyAZLb_WBUpdheypw4RsCnQ-hyqx30j1Xfc",
+        authDomain: "petfinder-fp.firebaseapp.com",
+        databaseURL: "https://petfinder-fp-default-rtdb.firebaseio.com",
+        projectId: "petfinder-fp",
+        storageBucket: "petfinder-fp.appspot.com",
+        messagingSenderId: "17525799636",
+        appId: "1:17525799636:web:34696046c6dd3ed32a9941",
+        measurementId: "G-6D39BMTZNV"
+        });
 
         const firebase = require("firebase");
         // Required for side-effects
         require("firebase/firestore");
 
-        firebase.initializeApp(firebaseConfig);
-
-        const db = firebase.firestore();
-        const auth = firebase.auth();
+        const db = firebaseApp.firestore();
+        const auth = firebaseApp.auth();
         var deleteOwnEntry
+
         auth.onAuthStateChanged(user => {
             if(!user) {
-                window.location.replace("index.html");
+                window.location.replace("home.html");
                 console.log(user);
             }
         })
@@ -114,7 +113,7 @@
                 window.location.replace("index.html")
             })
         })
-        db.collection("stuff").get().then(snapshot => {
+        db.collection("chat").get().then(snapshot => {
             setupQuotes(snapshot.docs);
         })
         let counter = 0
@@ -132,7 +131,7 @@
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">${quote.date}</div>
                             <p class="text-gray-700 text-base">
-                                ${quote.stuff}
+                                ${quote.chat}
                                 <button id="${quote.usr[0]}" value="${quote.usr[1]}" class="buttonDelete">Delete</button>
                             </p>
                         </div>
@@ -148,18 +147,18 @@
             })
             quotes.innerHTML = html;
             deleteOwnEntry = document.querySelectorAll("button")
-            delStuff()
+            delChat()
         }
 
-        function delStuff() {
+        function delChat() {
             for(let i = 0; i < deleteOwnEntry.length; i++){
                 deleteOwnEntry[i].addEventListener("click", function(){
                     const id = this.id
                     const val = this.value
                     if(id == auth.currentUser.uid) {
-                        db.collection("stuff").doc(val).delete().then(function(){
+                        db.collection("chat").doc(val).delete().then(function(){
                             console.log("Document successfully deleted!");
-                            db.collection("stuff").get().then(snapshot => {
+                            db.collection("chat").get().then(snapshot => {
                                 setupQuotes(snapshot.docs);
                             })
                         }).catch(function(error){
@@ -171,11 +170,11 @@
         }
         var submit = document.querySelector("#submit")
         submit.addEventListener("click", function(){
-            const stuffs = document.querySelector("#stuffs").value;
+            const chat = document.querySelector("#chat").value;
             counter++
-            db.collection("stuff").doc(counter.toString()).set({
+            db.collection("chat").doc(counter.toString()).set({
                 'date': Date(),
-                'stuff': stuffs,
+                'chat': chat,
                 'usr': [auth.currentUser.uid, counter]
             })
             var html = quotes.innerHTML.split("").join("").toString()
@@ -184,18 +183,18 @@
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2">${Date()}</div>
                         <p class="text-gray-700 text-base">
-                            ${stuffs}
+                            ${chat}
                             <button id="${auth.currentUser.uid}" value="${counter+"thing"}" class="buttonDelete">Delete</button>
                         </p>
                         </div>
                     </div> ${html}
                 </li>`
             deleteOwnEntry = document.querySelectorAll("button")
-            delStuff()
+            delChat()
         })
         var deleteCol = document.querySelector("#delete")
         function delCol() {
-            db.collection("stuff").get().then(querySnapshot => {
+            db.collection("chat").get().then(querySnapshot => {
                 counter = 0
                 querySnapshot.docs.forEach(mathing => {
                     mathing.ref.delete()
