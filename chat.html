@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+            body {
+                background-color: #f3f2f3;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                text-align: center;
+            }
+
+            #messages{
+                padding-bottom: 30%;
+            }
+
+            li {
+                list-style-type: none;
+                margin-bottom: 10px;
+                background-color: grey;
+                padding: 5px;
+                border-radius: 10px;
+                color: white;
+                width: 50%;
+            }
+
+            li span {
+                font-style: italic;
+                font-weight: bolder;
+                color: #b5b0b9;
+            }
+
+            #chat {
+                width: 80%;
+                margin: auto;
+            }
+
+            #message-form {
+                text-align: center;
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: #b7b5b9;
+            }
+
+        </style>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- <link href="style.css" rel="stylesheet" type="text/css"> -->
+
+        <title>Chat</title>
+    </head>
+    <body>
+    <!-- HTML -->
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="home.html">Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Information</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Chat</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+    <header>
+        <h2>Pet Finder Chat</h2>
+      </header>
+
+      <div id="chat">
+        <!-- messages will display here -->
+        <ul id="messages"></ul>
+
+    <div id="chat">
+        <!-- messages will display here -->
+        <ul id="messages"></ul>
+
+    <!-- form to send message -->
+        <form id="message-form">
+            <input id="message-input" type="text" />
+            <button id="message-btn" type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js">  </script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+        <!-- JS -->
+    <script type="module">
+
+        const firebaseApp = firebase.initializeApp({
+        apiKey: "AIzaSyAZLb_WBUpdheypw4RsCnQ-hyqx30j1Xfc",
+        authDomain: "petfinder-fp.firebaseapp.com",
+        databaseURL: "https://petfinder-fp-default-rtdb.firebaseio.com",
+        projectId: "petfinder-fp",
+        storageBucket: "petfinder-fp.appspot.com",
+        messagingSenderId: "17525799636",
+        appId: "1:17525799636:web:34696046c6dd3ed32a9941",
+        measurementId: "G-6D39BMTZNV"
+        });
+        // import { initializeApp } from "/node-modulesfirebase/app";
+        // firebase.initializeApp(firebaseApp);
+        // import { getAuth, createUserWithEmailAndPassword } from "/node-modules/firebase/auth";
+
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js'
+
+        // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js'
+
+        // Add Firebase products to use
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            GoogleAuthProvider,
+            updateEmail
+        } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
+
+        // const db = firebaseApp.firestore();
+        // const auth = firebaseApp.auth();
+        // const myData = localStorage.getItem('name-trans');
+        // var error = document.querySelector("#error");
+        // const userDetails = document.querySelector("#userDetails");
+
+        // initialize database
+        const db = firebase.database();
+
+        // get user's data
+        const username = prompt("Please Tell Us Your Name");
+
+        // submit form
+        // when submit button gets pressed->
+        document.getElementById("message-form").addEventListener("submit", sendMessage);
+
+        // send message to chat
+        function sendMessage(e) {
+        e.preventDefault();
+
+        // submit
+        const timestamp = Date.now();
+        const messageInput = document.getElementById("message-input");
+        const message = messageInput.value;
+
+        // clear the input box
+        messageInput.value = "";
+
+        //auto scroll to last chat
+        document
+            .getElementById("messages")
+            .scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+
+        // create db collection and send in the data
+        db.ref("messages/" + timestamp).set({
+            username,
+            message,
+        });
+        }
+
+        // display the messages
+        const fetchChat = db.ref("messages/");
+
+        fetchChat.on("child_added", function (snapshot) {
+        const messages = snapshot.val();
+        const message = `<li class=${
+            username === messages.username ? "sent" : "receive"
+        }><span>${messages.username}: </span>${messages.message}</li>`;
+        // append the message on the page
+        document.getElementById("messages").innerHTML += message;
+        });
+
+
+    </script>
+    </body>
+
+
+
+
+
+</html>
