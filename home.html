@@ -182,10 +182,9 @@
         const myData = localStorage.getItem('name-trans');
         var error = document.querySelector("#error");
         const userDetails = document.querySelector("#userDetails");
-        const email = document.getElementById('email').value
-        const password = document.getElementById('password').value
-
-        localStorage.setItem('email');
+        var currentUser;
+        localStorage.setItem('currentUser', currentUser);
+        console.log(currentUser);
 
         //Connect with google database
         const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -199,6 +198,8 @@
         document.querySelector('#submit').addEventListener('click',signup);
 
         function signup(){
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value
             const long = localStorage.getItem('long-trans')
             const lat = localStorage.getItem('lat-trans')
             console.log(email, password)
@@ -244,6 +245,7 @@
             const long = localStorage.getItem('long-trans')
             const lat = localStorage.getItem('lat-trans')
             console.log(email, password)
+            currentUser = email;
 
             firebase.auth().signInWithEmailAndPassword(email, password).catch(function(err) {
                 console.log(err)
