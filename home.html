@@ -185,7 +185,7 @@
         const email = document.getElementById('email').value
         const password = document.getElementById('password').value
 
-        export { email, password};
+        localStorage.setItem('email');
 
         //Connect with google database
         const googleProvider = new firebase.auth.GoogleAuthProvider();
