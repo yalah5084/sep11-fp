@@ -13,6 +13,14 @@
                 align-items: center;
                 flex-direction: column;
                 background-image: url("src/home.PNG");
+                background-repeat: no-repeat;
+                /* Full height */
+                height: 100%;
+                background-size: cover;
+            }
+
+            h5 {
+                text-align: center;
             }
 
             .submit-btn{
@@ -20,6 +28,17 @@
                 top: 10%;
                 /* margin-top: 50px; */
             }
+
+            #account{
+                background-color: white;
+                border-style: round;
+                border-radius: 5%;
+                padding: 15px 10px;
+                margin-top:50px;
+            }
+
+
+
         </style>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
         <!-- <link href="style.css" rel="stylesheet" type="text/css"> -->
@@ -43,6 +62,9 @@
                 <a class="nav-link" href="index.html">Information</a>
                 </li>
             </ul>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.html">Chat</a>
+              </li>
             <!-- <form class="d-flex" role="search"> //Optional
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -52,59 +74,62 @@
         </nav>
 
         <!-- Account details -->
-        <h3>Sign Up New users </h3>
-        <div>
+        <div id="account">
+            <h5 style="color: #E7B9C8;">Sign Up New users </h5>
             <div>
-                <label>Email:</label>
-                <input
-                    name="email"
-                    placeholder="Create Email"
-                    id="email"
-                    type="email"
-                >
+                <div>
+                    <label>Email:</label>
+                    <input
+                        name="email"
+                        placeholder="Create Email"
+                        id="email"
+                        type="email"
+                    >
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input
+                    name="password"
+                    placeholder="Create Password"
+                    id="password"
+                    type="password"
+                    >
+                </div>
+                <button style="background-color: #EED3D9;" class="submit-btn" id="submit">Sign In</button>
+                <!-- <button class="out-btn" id="signout">Sign Out</button> -->
             </div>
-            <div>
-                <label>Password:</label>
-                <input
-                name="password"
-                placeholder="Create Password"
-                id="password"
-                type="password"
-                >
+
+
+            <!-- Account details -->
+            <h5 style="color: #BCCD69;">Returning users </h5>
+            <div id="loginScreen">
+                <div>
+                    <label>Email:</label>
+                    <input
+                        name="email"
+                        placeholder="Email"
+                        id="emailB"
+                        type="email"
+                    >
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input
+                    name="password"
+                    placeholder="Password"
+                    id="passwordB"
+                    type="password"
+                    >
+                </div>
+                <button style="background-color: #BCCD69;" id="login-btn">Login</button>
             </div>
-            <button class="submit-btn" id="submit">Sign In</button>
-            <!-- <button class="out-btn" id="signout">Sign Out</button> -->
+
+            <div id="dashboard">
+                <div style="text-align: center; color: #3779C4;" id="userDetails"></div>
+                <div id="error"></div>
+                <button style="background-color: #7DA1C9;" class="logout-btn" id="logout-btn">Logout</button>
+            </div>
         </div>
-
-
-         <!-- Account details -->
-         <h3>Returning users </h3>
-         <div id="loginScreen">
-             <div>
-                 <label>Email:</label>
-                 <input
-                     name="email"
-                     placeholder="Email"
-                     id="emailB"
-                     type="email"
-                 >
-             </div>
-             <div>
-                 <label>Password:</label>
-                 <input
-                 name="password"
-                 placeholder="Password"
-                 id="passwordB"
-                 type="password"
-                 >
-             </div>
-             <button id="login-btn">Login</button>
-         </div>
-
-         <div id="dashboard">
-            <div id="userDetails"></div>
-            <button class="logout-btn" id="logout-btn">Logout</button>
-         </div>
 
          <!-- <div id="update account">
             <button id="email-btn">Change Email</button>
@@ -155,6 +180,9 @@
         const db = firebaseApp.firestore();
         const auth = firebaseApp.auth();
         const myData = localStorage.getItem('name-trans');
+        var error = document.querySelector("#error");
+        const userDetails = document.querySelector("#userDetails");
+
 
         //Connect with google database
         const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -195,6 +223,8 @@
             .catch((err) => {
                 console.log(err.code)
                 console.log(err.message)
+                // error.innerHTML = "Email already taken."
+                // alert("Email already")
                 // The email of the user's account used.
                 // The AuthCredential type that was used.
             })
@@ -214,9 +244,10 @@
             const lat = localStorage.getItem('lat-trans')
             console.log(email, password)
 
-            firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-                console.log(error)
+            firebase.auth().signInWithEmailAndPassword(email, password).catch(function(err) {
+                console.log(err)
                 alert("Please write a valid email/valid password");//make this into a popup
+                // error.innerHTML = "Invalid email or password"
             })
         }
 
@@ -245,21 +276,21 @@
         })
 
         var user = firebase.auth().currentUser;//Gets current signed in data
-        if (user) {
-        // User is signed in.
-        if (user != null) {
-            name = user.displayName;
-            email = user.email;
-            photoUrl = user.photoURL;
-            emailVerified = user.emailVerified;
-            uid = user.uid;
-            // The user's ID, unique to the Firebase project. Do NOT use
-            // this value to authenticate with your backend server, if
-            // you have one. Use User.getToken() instead.
-        }
-        } else {
-        // No user is signed in.
-        }
+        // if (user) {
+        // // User is signed in.
+        // if (user != null) {
+        //     name = user.displayName;
+        //     email = user.email;
+        //     photoUrl = user.photoURL;
+        //     emailVerified = user.emailVerified;
+        //     uid = user.uid;
+        //     // The user's ID, unique to the Firebase project. Do NOT use
+        //     // this value to authenticate with your backend server, if
+        //     // you have one. Use User.getToken() instead.
+        // }
+        // } else {
+        // // No user is signed in.
+        // }
 
         // document.querySelector('#email-btn').addEventListener('click', Email())
 

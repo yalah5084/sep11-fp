@@ -5,83 +5,112 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
-
-
         <style>
-            /* CSS */
+            body {
+                background-color: #f3f2f3;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                text-align: center;
+            }
+
+            #messages{
+                padding-bottom: 30%;
+            }
+
+            li {
+                list-style-type: none;
+                margin-bottom: 10px;
+                background-color: grey;
+                padding: 5px;
+                border-radius: 10px;
+                color: white;
+                width: 50%;
+            }
+
+            li span {
+                font-style: italic;
+                font-weight: bolder;
+                color: #b5b0b9;
+            }
+
+            #chat {
+                width: 80%;
+                margin: auto;
+            }
+
+            #message-form {
+                text-align: center;
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: #b7b5b9;
+            }
 
         </style>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- <link href="style.css" rel="stylesheet" type="text/css"> -->
 
-        <title>Title</title>
+        <title>Chat</title>
     </head>
     <body>
-        <!-- HTML -->
+    <!-- HTML -->
 
-        <!-- <div id="bk-map"></div> -->
-
-        <!-- <div class="flex h-screen">
-          <div class="m-auto">
-              <input type="text" id="stuffs" placeholder="Type whatever here!"><br><button id="submit">Submit</button>
-              <ul id="quotes">
-                  <li><div class="max-w-sm rounded overflow-hidden shadow-lg">
-                      <div class="px-6 py-4">
-                          <div class="font-bold text-xl mb-2">Sun May 14 2023 22:35:00 GMT-0400 (Eastern Daylight Time)</div>
-                          <p class="text-gray-700 text-base">
-                              Hi
-                              <button id="yJrxKoboznRHEK1tJiN9rU6QNUF3" value="3thing" class="buttonDelete">Delete</button>
-                          </p>
-                          </div>
-                      </div>
-                      </li><li>
-                          <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                          <div class="px-6 py-4">
-                              <div class="font-bold text-xl mb-2">Fri May 12 2023 09:26:01 GMT-0400 (Eastern Daylight Time)</div>
-                              <p class="text-gray-700 text-base">
-                                  hello
-                                  <button id="delete" value="2" class="buttonDelete">Delete</button>
-                              </p>
-                          </div>
-                          </div>
-                      </li>
-
-                      <li>
-                          <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                          <div class="px-6 py-4">
-                              <div class="font-bold text-xl mb-2">Thu May 11 2023 22:11:28 GMT-0400 (Eastern Daylight Time)</div>
-                              <p class="text-gray-700 text-base">
-                                  h
-                                  <button id="LgLViC7oMQUF6gu2mLoOUL0Hq462" value="1" class="buttonDelete">Delete</button>
-                              </p>
-                          </div>
-                          </div>
-                      </li>
-
-                  </ul>
-          </div>
-      </div> -->
-    <button id="logout">Logout</button>
-    <button id="delete">Delete</button>
-    <br>
-    <div class="flex h-screen">
-        <div class="m-auto">
-            <input type="text" id="chat" placeholder="Type here!"><br><button id="submit">Submit</button>
-            <ul id="quotes">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="home.html">Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Information</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Chat</a>
+              </li>
             </ul>
+          </div>
         </div>
+      </nav>
+
+
+    <header>
+        <h2>Pet Finder Chat</h2>
+      </header>
+
+      <div id="chat">
+        <!-- messages will display here -->
+        <ul id="messages"></ul>
+
+    <div id="chat">
+        <!-- messages will display here -->
+        <ul id="messages"></ul>
+
+    <!-- form to send message -->
+        <form id="message-form">
+            <input id="message-input" type="text" />
+            <button id="message-btn" type="submit">Send</button>
+        </form>
     </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js">  </script>
-        <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-        <script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js">  </script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+        <!-- JS -->
+    <script type="module">
 
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseApp = firebase.initializeApp({
         apiKey: "AIzaSyAZLb_WBUpdheypw4RsCnQ-hyqx30j1Xfc",
         authDomain: "petfinder-fp.firebaseapp.com",
@@ -92,121 +121,83 @@
         appId: "1:17525799636:web:34696046c6dd3ed32a9941",
         measurementId: "G-6D39BMTZNV"
         });
+        // import { initializeApp } from "/node-modulesfirebase/app";
+        // firebase.initializeApp(firebaseApp);
+        // import { getAuth, createUserWithEmailAndPassword } from "/node-modules/firebase/auth";
 
-        const firebase = require("firebase");
-        // Required for side-effects
-        require("firebase/firestore");
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js'
 
-        const db = firebaseApp.firestore();
-        const auth = firebaseApp.auth();
-        var deleteOwnEntry
+        // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js'
 
-        auth.onAuthStateChanged(user => {
-            if(!user) {
-                window.location.replace("home.html");
-                console.log(user);
-            }
-        })
-        const logout = document.querySelector("#logout")
-        logout.addEventListener("click", function(){
-            auth.signOut().then(function(){
-                window.location.replace("index.html")
-            })
-        })
-        db.collection("chat").get().then(snapshot => {
-            setupQuotes(snapshot.docs);
-        })
-        let counter = 0
-        const quotes =  document.querySelector("#quotes")
-        function setupQuotes(data){
-            let html = "";
-            data.sort((a,b) => {
-                return b.data().usr[1] - a.data().usr[1]
-            }).forEach(doc => {
-                const quote = doc.data();
-                console.log(quote.usr[1])
-                html += `
-                    <li>
-                        <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">${quote.date}</div>
-                            <p class="text-gray-700 text-base">
-                                ${quote.chat}
-                                <button id="${quote.usr[0]}" value="${quote.usr[1]}" class="buttonDelete">Delete</button>
-                            </p>
-                        </div>
-                        </div>
-                    </li>
-                `
-            })
-            data.sort((a,b) => {
-                return a.data().usr[1] - b.data().usr[1]
-            }).forEach(doc => {
-                const quote = doc.data();
-                counter = quote.usr[1]
-            })
-            quotes.innerHTML = html;
-            deleteOwnEntry = document.querySelectorAll("button")
-            delChat()
+        // Add Firebase products to use
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            GoogleAuthProvider,
+            updateEmail
+        } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js'
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
+
+        // const db = firebaseApp.firestore();
+        // const auth = firebaseApp.auth();
+        // const myData = localStorage.getItem('name-trans');
+        // var error = document.querySelector("#error");
+        // const userDetails = document.querySelector("#userDetails");
+
+        // initialize database
+        const db = firebase.database();
+
+        // get user's data
+        const username = prompt("Please Tell Us Your Name");
+
+        // submit form
+        // when submit button gets pressed->
+        document.getElementById("message-form").addEventListener("submit", sendMessage);
+
+        // send message to chat
+        function sendMessage(e) {
+        e.preventDefault();
+
+        // submit
+        const timestamp = Date.now();
+        const messageInput = document.getElementById("message-input");
+        const message = messageInput.value;
+
+        // clear the input box
+        messageInput.value = "";
+
+        //auto scroll to last chat
+        document
+            .getElementById("messages")
+            .scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+
+        // create db collection and send in the data
+        db.ref("messages/" + timestamp).set({
+            username,
+            message,
+        });
         }
 
-        function delChat() {
-            for(let i = 0; i < deleteOwnEntry.length; i++){
-                deleteOwnEntry[i].addEventListener("click", function(){
-                    const id = this.id
-                    const val = this.value
-                    if(id == auth.currentUser.uid) {
-                        db.collection("chat").doc(val).delete().then(function(){
-                            console.log("Document successfully deleted!");
-                            db.collection("chat").get().then(snapshot => {
-                                setupQuotes(snapshot.docs);
-                            })
-                        }).catch(function(error){
-                            console.error("Error removing document: ", error);
-                        })
-                    }
-                })
-            }
-        }
-        var submit = document.querySelector("#submit")
-        submit.addEventListener("click", function(){
-            const chat = document.querySelector("#chat").value;
-            counter++
-            db.collection("chat").doc(counter.toString()).set({
-                'date': Date(),
-                'chat': chat,
-                'usr': [auth.currentUser.uid, counter]
-            })
-            var html = quotes.innerHTML.split("").join("").toString()
-            quotes.innerHTML = `
-                <li><div class="max-w-sm rounded overflow-hidden shadow-lg">
-                    <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">${Date()}</div>
-                        <p class="text-gray-700 text-base">
-                            ${chat}
-                            <button id="${auth.currentUser.uid}" value="${counter+"thing"}" class="buttonDelete">Delete</button>
-                        </p>
-                        </div>
-                    </div> ${html}
-                </li>`
-            deleteOwnEntry = document.querySelectorAll("button")
-            delChat()
-        })
-        var deleteCol = document.querySelector("#delete")
-        function delCol() {
-            db.collection("chat").get().then(querySnapshot => {
-                counter = 0
-                querySnapshot.docs.forEach(mathing => {
-                    mathing.ref.delete()
-                    quotes.innerHTML = ""
-                })
-            })
-        }
-        deleteCol.addEventListener("click", function() {
-            delCol()
-        })
+        // display the messages
+        const fetchChat = db.ref("messages/");
 
-        </script>
+        fetchChat.on("child_added", function (snapshot) {
+        const messages = snapshot.val();
+        const message = `<li class=${
+            username === messages.username ? "sent" : "receive"
+        }><span>${messages.username}: </span>${messages.message}</li>`;
+        // append the message on the page
+        document.getElementById("messages").innerHTML += message;
+        });
 
+
+    </script>
     </body>
+
+
+
+
+
 </html>
