@@ -8,20 +8,51 @@
 #map-bg {
     /* lavender */
     background: #C5D1EB;
-
-
-
-
-
-
 }
 
 .center {
     text-align: center;
 }
 
+.fw,
+fh {
+    display: table;
+}
 
+.fw {
+    width: 100%;
+    padding: 40px 0;
+}
 
+.fh {
+    height: 100%;
+}
+
+.vert-center {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.k{
+    background-image:url("img/a.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 650px;
+}
+
+.circle{
+    height: 25%;
+    width: 10%;
+    background-color: rgba(255,255,255,.8);
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    border-radius: 50%;
+    display: block;
+    margin-left:62%;
+    margin-top:12%;
+  }
 
 /* chat page */
 body {
