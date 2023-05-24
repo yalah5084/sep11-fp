@@ -25,7 +25,7 @@
 
 /* chat page */
 body {
-    background-color: #f3f2f3;
+    /* background-color: #f3f2f3; */
     margin: 0;
     padding: 0;
 }
@@ -52,7 +52,7 @@ header {
 li span {
     font-style: italic;
     font-weight: bolder;
-    color: #b5b0b9;
+    color: blue;
 }
 
 #chat {
@@ -66,5 +66,32 @@ li span {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #b7b5b9;
+    background-color: #C5D1EB;
 }
+
+
+
+
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
