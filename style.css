@@ -1,0 +1,70 @@
+/* map page */
+#map {
+    margin: auto;
+    width: 1300px;
+    height: 600px;
+  }
+
+#map-bg {
+    /* lavender */
+    background: #C5D1EB;
+
+
+
+
+
+
+}
+
+.center {
+    text-align: center;
+}
+
+
+
+
+/* chat page */
+body {
+    background-color: #f3f2f3;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+}
+
+#messages{
+    padding-bottom: 30%;
+}
+
+/* Give class to li */
+/* li {
+    list-style-type: none;
+    margin-bottom: 10px;
+    background-color: grey;
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+    width: 50%;
+} */
+
+li span {
+    font-style: italic;
+    font-weight: bolder;
+    color: #b5b0b9;
+}
+
+#chat {
+    width: 80%;
+    margin: auto;
+}
+
+#message-form {
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #b7b5b9;
+}
