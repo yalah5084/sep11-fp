@@ -147,6 +147,11 @@ li span {
     }
 }
 
+@media (max-width: 865px) {
+    .displayed{
+        display:none;
+    }
+}
 
 
 
