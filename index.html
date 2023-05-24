@@ -7,6 +7,11 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
 
+
+        <!-- CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="style.css" rel="stylesheet" type="text/css" />
+
         <!-- Leaflet CSS file -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
 
@@ -14,18 +19,12 @@
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
         <style>
-            /* CSS */
 
-            #map {
-              margin: auto;
-              width: 1300px;
-              height: 600px;
-            }
         </style>
 
         <title>Information Page</title>
     </head>
-    <body>
+    <body id="map-bg">
 
         <!-- HTML --> <!--Make a logo?-->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -57,20 +56,32 @@
 
 
           <!-- main -->
-          <div style="padding: 10px 30px;" >
+
+          <!-- title -->
+          <h1 class="center">Pet Finder</h1>
+
+          <!-- instruction -->
+          <h5 class="center">Let's find you lost pet! Please provide information about your pet such as the name, description and coordinates. For the coordinates, you can use <a href="https://www.google.com/maps">Google Maps</a> by right clicking and copying the coordinates.</h5>
+
+
+          <div style="padding: 10px 30px;">
             <h1 id="pName"></h1>
 
             <!-- Enter pet name on page -->
-            <input placeholder="pet name" type="text" id="petName">
-            <br>
-            <br>
-
-            <input placeholder="pet description" type="text" id="description">
+            <p style="display: inline">Pet name:</p>
+            <input placeholder="Ex: Luna" type="text" id="petName">
 
             <br>
             <br>
 
-            <p>Type in coordinates of your pet:</p>
+              <!-- pet description -->
+            <p style="display: inline">Pet description:</p>
+            <input placeholder="Ex: A big husky" type="text" id="description">
+
+            <br>
+            <br>
+
+            <p>Type in coordinates of your pet</p>
 
 
             <!-- Longitude -->
@@ -80,7 +91,7 @@
             <br>
 
             <!-- Latitude -->
-            <p>(If East, please put a negative sign "-"):</p>
+            <p>(If West, please put a negative sign "-"):</p>
             <input placeholder="latitude" type="text" id="coordLat">
 
             <button id="button">Enter</button>
