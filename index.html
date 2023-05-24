@@ -18,6 +18,9 @@
         <!-- Leaflet JavaScript file -->
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
+        <!--jQuery link-->
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+
         <style>
 
         </style>
@@ -55,13 +58,13 @@
           <!-- main -->
 
           <!-- title -->
-          <h1 class="center">Pet Finder</h1>
+          <h1 class="center" style="font-size: 90px; font-family: poppins;">Pet Finder</h1>
 
           <!-- instruction -->
-          <h5 class="center">Let's find you lost pet! Please provide information about your pet such as the name, description and coordinates. For the coordinates, you can use <a href="https://www.google.com/maps">Google Maps</a> by right clicking and copying the coordinates.</h5>
+          <h5 class="center" style="font-size: 28px; font-family: poppins; font-weight: 500;">Let's find you lost pet! Please provide information about your pet such as the name, description and coordinates. For the coordinates, you can use <a href="https://www.google.com/maps">Google Maps</a> by right clicking and copying the coordinates.</h5>
 
 
-          <div style="padding: 10px 30px;">
+          <div style="padding: 10px 30px; font-size: 20px;" class="mint-green ">
             <h1 id="pName"></h1>
 
             <!-- Enter pet name on page -->
@@ -83,22 +86,28 @@
 
             <!-- Longitude -->
             <p>(If South, please put a negative sign "-"):</p>
-            <input placeholder="longitude" type="text" id="coordLong">
+            <input placeholder="Longitude" type="text" id="coordLong">
             <br>
             <br>
 
             <!-- Latitude -->
             <p>(If West, please put a negative sign "-"):</p>
-            <input placeholder="latitude" type="text" id="coordLat">
+            <input placeholder="Latitude" type="text" id="coordLat">
 
-            <button id="button">Enter</button>
+            <button id="button" class="peach">Enter</button>
 
             <br>
             <br>
 
             <p id="locationlong"></p>
             <p id="locationlat"></p>
+
+            <!-- hidden note -->
+            <p id="hidden-note">You can drag the marker around and double click to delete the marker!!!</p>
           </div>
+
+
+
 
           <!-- map -->
           <div id="map"></div>
@@ -169,9 +178,6 @@
             }).addTo(map)
 
 
-            // icon
-
-
             // make markers
             function petMarker(long, lat) {
               var marker = L.marker([long, lat], {draggable: true}).addTo(map) // add marker to the map
@@ -197,8 +203,26 @@
             }
 
 
+            // add font poppins for every p element
+            var paras = document.querySelectorAll("p")
+
+            paras.forEach(function(para){
+              para.classList.add("poppins")
+            })
+
+
+            // jQuery for the hidden note
+            $("#button").on({
+              click: function(){
+                $("#hidden-note").show();
+              },
+              mouseleave: function(){
+                $("#hidden-note").hide();
+              },
+            });
 
         </script>
         <!-- <script type ="module" src="style.js"></script> -->
+
     </body>
 </html>

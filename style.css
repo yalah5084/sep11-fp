@@ -1,25 +1,40 @@
 /* map page */
 #map {
     margin: auto;
-    width: 1300px;
-    height: 600px;
+    width: 380px;
+    height: 550px;
   }
 
 #map-bg {
     /* lavender */
     background: #C5D1EB;
-
-
-
-
-
-
 }
 
 .center {
     text-align: center;
 }
 
+.peach {
+    background: #FFE5B4;
+}
+
+.mint-green {
+    color: #3EB489;
+}
+
+#hidden-note {
+    text-align: center;
+
+    display: none;
+    font-size: 20px;
+
+    /* pink */
+    color: #FC0FC0;
+}
+
+.poppins {
+    font-family: poppins;
+}
 
 
 
@@ -68,3 +83,32 @@ li span {
     width: 100%;
     background-color: #b7b5b9;
 }
+
+
+/* media query */
+
+@media (min-width: 500px) {
+    #map {
+        width: 500px;
+        height: 675px;
+    }
+}
+
+
+@media (min-width: 760px) {
+    #map {
+        width: 800px;
+        height: 800px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #map {
+        width: 1175px;
+        height: 800px;
+    }
+}
+
+
+
+
