@@ -1,8 +1,8 @@
 /* map page */
 #map {
     margin: auto;
-    width: 1300px;
-    height: 600px;
+    width: 380px;
+    height: 550px;
   }
 
 #map-bg {
@@ -17,6 +17,28 @@
 .fw,
 fh {
     display: table;
+}
+
+.peach {
+    background: #FFE5B4;
+}
+
+.mint-green {
+    color: #3EB489;
+}
+
+#hidden-note {
+    text-align: center;
+
+    display: none;
+    font-size: 20px;
+
+    /* pink */
+    color: #FC0FC0;
+}
+
+.poppins {
+    font-family: poppins;
 }
 
 .fw {
@@ -56,7 +78,7 @@ fh {
 
 /* chat page */
 body {
-    background-color: #f3f2f3;
+    /* background-color: #f3f2f3; */
     margin: 0;
     padding: 0;
 }
@@ -83,7 +105,7 @@ header {
 li span {
     font-style: italic;
     font-weight: bolder;
-    color: #b5b0b9;
+    color: blue;
 }
 
 #chat {
@@ -97,5 +119,58 @@ li span {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #b7b5b9;
+    background-color: #C5D1EB;
 }
+
+
+/* media query */
+
+@media (min-width: 500px) {
+    #map {
+        width: 500px;
+        height: 675px;
+    }
+}
+
+
+@media (min-width: 760px) {
+    #map {
+        width: 800px;
+        height: 800px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #map {
+        width: 1175px;
+        height: 800px;
+    }
+}
+
+
+
+
+
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+ }
