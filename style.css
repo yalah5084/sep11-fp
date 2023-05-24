@@ -133,24 +133,26 @@ li span {
 
 /* media query */
 
-@media (min-width: 500px) {
+@media (min-width: 481px) {
     #map {
-        width: 500px;
+        width: 440px;
         height: 675px;
     }
 }
 
 
-@media (min-width: 760px) {
+@media (min-width: 769px) {
     #map {
-        width: 800px;
+        width: 750px;
         height: 800px;
     }
 }
 
-@media (min-width: 1200px) {
+
+
+@media (min-width: 1280px) {
     #map {
-        width: 1175px;
+        width: 1150px;
         height: 800px;
     }
 }
