@@ -61,7 +61,9 @@
 
           <div class="fw fh k">
             <div class="vert-center">
-              <h1 class="center title" style="font-size: 90px; font-family: poppins;">Pet Finder</h1>
+              <div>
+                <h1 class="center title" style="font-size: 90px; font-family: poppins;">Pet Finder</h1>
+              </div>
               <div class="circle displayed"></div>
             </div>
           </div>
@@ -69,7 +71,7 @@
           <br>
 
           <!-- instruction -->
-          <h5 class="center" style="font-size: 28px; font-family: poppins; font-weight: 500;">Let's find you lost pet! Please provide information about your pet such as the name, description and coordinates. For the coordinates, you can use <a href="https://www.google.com/maps">Google Maps</a> by right clicking and copying the coordinates.</h5>
+          <h5 class="center" style="font-size: 28px; font-family: poppins; font-weight: 500;">Let's find you lost pet! Please provide your last recollection information about your pet such as the name, description, and coordinates. For the coordinates, you can use <a href="https://www.google.com/maps">Google Maps</a> by right clicking and copying the coordinates. Use the chat to advocate for yourself and good luck!</h5>
 
 
           <div style="padding: 10px 30px; font-size: 20px;" class="mint-green ">
@@ -160,12 +162,13 @@
               var userLatTrans = userLat.value
               localStorage.setItem('long-trans', userLongTrans)
               localStorage.setItem('lat-trans', userLatTrans)
-
-
-              pLong.innerHTML = "Longitude: " + userLongTrans
-              pLat.innerHTML = "Latitude: " + userLatTrans
-
-              petMarker(userLong.value, userLat.value) // use the coordinates to add a marker to the map
+              if((userLong.value<-85 || userLong.value>85)||(userLat.value<-180 || userLat.value>180)){
+                alert("Please type in real coordinates")
+              }else{
+                pLong.innerHTML = "Longitude: " + userLongTrans
+                pLat.innerHTML = "Latitude: " + userLatTrans
+                petMarker(userLong.value, userLat.value) // use the coordinates to add a marker to the map
+              }
             })
 
             //limit the map, make the user unable to move the pin, search cookies
