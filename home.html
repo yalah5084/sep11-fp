@@ -4,7 +4,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
 
         <style>
             /* CSS */
@@ -132,6 +132,7 @@
             </div>
         </div>
 
+
          <!-- <div id="update account">
             <button id="email-btn">Change Email</button>
             <button id="ver-btn">Verify Email</button>
@@ -149,20 +150,6 @@
         <!-- JS -->
     <script type="module">
 
-        const firebaseApp = firebase.initializeApp({
-        apiKey: "AIzaSyAZLb_WBUpdheypw4RsCnQ-hyqx30j1Xfc",
-        authDomain: "petfinder-fp.firebaseapp.com",
-        databaseURL: "https://petfinder-fp-default-rtdb.firebaseio.com",
-        projectId: "petfinder-fp",
-        storageBucket: "petfinder-fp.appspot.com",
-        messagingSenderId: "17525799636",
-        appId: "1:17525799636:web:34696046c6dd3ed32a9941",
-        measurementId: "G-6D39BMTZNV"
-        });
-        // import { initializeApp } from "/node-modulesfirebase/app";
-        // firebase.initializeApp(firebaseApp);
-        // import { getAuth, createUserWithEmailAndPassword } from "/node-modules/firebase/auth";
-
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js'
 
         // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
@@ -170,20 +157,36 @@
 
         // Add Firebase products that you want to use
         import { getAuth, createUserWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js'
-        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
+        import { getFirestore, addDoc, collection, doc } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
 
-        const db = firebaseApp.firestore();
+        const firebaseApp = firebase.initializeApp({
+            apiKey: "AIzaSyAZLb_WBUpdheypw4RsCnQ-hyqx30j1Xfc",
+            authDomain: "petfinder-fp.firebaseapp.com",
+            databaseURL: "https://petfinder-fp-default-rtdb.firebaseio.com",
+            projectId: "petfinder-fp",
+            storageBucket: "petfinder-fp.appspot.com",
+            messagingSenderId: "17525799636",
+            appId: "1:17525799636:web:34696046c6dd3ed32a9941",
+            measurementId: "G-6D39BMTZNV"
+        });
+        // import { initializeApp } from "/node-modulesfirebase/app";
+        // firebase.initializeApp(firebaseApp);
+        // import { getAuth, createUserWithEmailAndPassword } from "/node-modules/firebase/auth";
+
+        const db = getFirestore(firebaseApp);
+        const colRef = collection(db,"testing")
         const auth = firebaseApp.auth();
         const myData = localStorage.getItem('name-trans');
         var error = document.querySelector("#error");
         const userDetails = document.querySelector("#userDetails");
+        var currentUser;
 
 
         //Connect with google database
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
-        auth.languageCode = firebase.auth().useDeviceLanguage();
+        auth.languageCode = firebaseApp.auth().useDeviceLanguage();
             // To apply the default browser preference instead of explicitly setting it.
             // firebase.auth().useDeviceLanguage()
 
@@ -195,7 +198,7 @@
             const password = document.getElementById('password').value
             const long = localStorage.getItem('long-trans')
             const lat = localStorage.getItem('lat-trans')
-            console.log(email, password)
+            // console.log(email, password)
 
             auth.createUserWithEmailAndPassword(email, password)//new accounts
             .then((result) => {
@@ -208,12 +211,10 @@
                 // ...
             })
             //firestore here
+            //david
             .then((cred) => {
                 console.log(res.user)
-                return collection(db,'users').doc(cred.user.uid).set({
-                    Longitude: long,
-                    Latitude: lat
-                    })
+                // addDoc(collection(db,'users').doc(cred.user.uid))
                 })
             .catch((err) => {
                 console.log(err.code)
@@ -223,14 +224,25 @@
                 // The email of the user's account used.
                 // The AuthCredential type that was used.
             })
+
         }
 
-
+        document.querySelector('#enter-btn').addEventListener('click', entered);
         document.querySelector('#login-btn').addEventListener('click',loginUser);
         document.querySelector('#logout-btn').addEventListener('click', logoutUser);
 
         document.querySelector('#loginScreen').style.display = "block"
         document.querySelector('#dashboard').style.display = "none"
+
+
+
+        async function entered(){
+            const enter = document.getElementById('text').value
+            const docRef = await addDoc(colRef,{
+                pet: enter
+            })
+        }
+        console.log(docRef.pet)
 
         function loginUser(){
             const email = document.getElementById('emailB').value
@@ -238,6 +250,7 @@
             const long = localStorage.getItem('long-trans')
             const lat = localStorage.getItem('lat-trans')
             console.log(email, password)
+            currentUser = email;
 
             firebase.auth().signInWithEmailAndPassword(email, password).catch(function(err) {
                 console.log(err)
@@ -309,8 +322,11 @@
     </body>
 
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> fd6e467394f5ec0c9f2a40f7e6c14a67b32a7ca0
 </html>

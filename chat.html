@@ -69,6 +69,7 @@
     <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <script src="home.html"></script>
         <!-- JS -->
     <script type="module">
 
@@ -90,6 +91,7 @@
 
         // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
         import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-analytics.js'
+
 
         // Add Firebase products to use
         import {
@@ -153,7 +155,7 @@
         document.getElementById("messages").innerHTML += message;
         });
 
-
+console.log(currentUser)
     </script>
     </body>
 
