@@ -64,7 +64,7 @@ fh {
 }
 
 .vert-center {
-    display: table-cell;
+    display: inline;
     vertical-align: middle;
 }
 
@@ -86,7 +86,7 @@ fh {
     border-radius: 50%;
     display: block;
     margin-left:62%;
-    margin-top:9%;
+    margin-top:12%;
   }
   .title{
         animation-name: titles;
@@ -99,13 +99,13 @@ fh {
   }
 @keyframes titles{
     0%{
-        background-image: linear-gradient(to right,#0DFD5A,#FDCC0D);
+        background-image: linear-gradient(to right,#B5976B,#9E8D65);
     }
     50%{
-        background-image: linear-gradient(to right,#FDCC0D,#0DFD5A);
+        background-image: linear-gradient(to right,#9E8D65,#B5976B);
     }
     100%{
-        background-image: linear-gradient(to right,#0DFD5A,#FDCC0D);
+        background-image: linear-gradient(to right,#B5976B,#9E8D65);
     }
 }
 
