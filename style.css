@@ -90,7 +90,7 @@ fh {
   }
   .title{
         animation-name: titles;
-        animation-duration:3s;
+        animation-duration:1s;
         animation-iteration-count: infinite;
         -webkit-background-clip: text;
         -moz-background-clip: text;
@@ -99,13 +99,13 @@ fh {
   }
 @keyframes titles{
     0%{
-        background-image: linear-gradient(to right,#B5976B,#9E8D65);
+        background-image: linear-gradient(to right,#006D5B,#07854C);
     }
     50%{
-        background-image: linear-gradient(to right,#9E8D65,#B5976B);
+        background-image: linear-gradient(to right,#07854C,#006D5B);
     }
     100%{
-        background-image: linear-gradient(to right,#B5976B,#9E8D65);
+        background-image: linear-gradient(to right,#006D5B,#07854C);
     }
 }
 
